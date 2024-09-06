@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int viagem(int inicial,int n,int x,int y,int moedas,int reinoatual){
+    if (inicial>n){
+        printf("%d",moedas);
+        return;
+    }
+    char direcao;
+    scanf(" %c",&direcao);
+    if (direcao == 'C'){
+        y+=1;
+    }else if(direcao=='D'){
+        x+=1;
+    }
+    if (x!=0 && y!=0 && x>y && reinoatual==1){
+        moedas+=1;
+    }else if(x!=0 && y!=0 && y>x && reinoatual==0){
+        moedas+=1;
+    }
+    if (x>y){
+        reinoatual=0;
+    }else if(y>x){
+        reinoatual=1;
+    }
+    
+    
+    
+    
+    
+    viagem(inicial+1,n,x,y,moedas,reinoatual);
+    
+}
+    
+int main() {
+    int linhas;
+    scanf("%d",&linhas);
+    viagem(0,linhas,0,0,0,0);
+	return 0;
+}
